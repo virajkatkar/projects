@@ -4,6 +4,7 @@ name: Automation of website
 
 # Controls when the workflow will run
 on:
+  workflow_dispatch:  
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
@@ -37,6 +38,7 @@ jobs:
           unzip awscliv2.zip
           ./aws/install
   deploy:
+    needs: build
     name: Upload to Amazon S3
     runs-on: ubuntu-latest
     # These permissions are needed to interact with GitHub's OIDC Token endpoint.
