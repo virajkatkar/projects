@@ -55,7 +55,7 @@ jobs:
         aws-region: us-west-2
     - name: Copy files to the test website with the AWS CLI
       run: |
-        aws s3 sync /output/ s3://www.katkarviraj.com
+        aws s3 sync output/ s3://www.katkarviraj.com
           
 
       
