@@ -32,6 +32,13 @@ jobs:
           sudo apt install python3-pip
           python3 -m pip install "pelican[markdown]"
           pelican content
+      - name: Upload the artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: website
+          path: |
+            output
+
       - name: Install AWS CLI
         run: |
           curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -46,6 +53,12 @@ jobs:
       id-token: write
       contents: read
     steps:
+
+    - name: DownloadUpload the artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: website
+        
     - name: Checkout
       uses: actions/checkout@v3
     - name: Configure AWS credentials
@@ -55,7 +68,7 @@ jobs:
         aws-region: us-west-2
     - name: Copy files to the test website with the AWS CLI
       run: |
-        aws s3 sync output/ s3://www.katkarviraj.com
+        aws s3 sync website/ s3://www.katkarviraj.com
     - name: Invalidate cloudfront
       run: aws cloudfront create-invalidation --distribution-id E3H5FWYDB7EZXV --paths "/*"
         
