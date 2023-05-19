@@ -32,12 +32,14 @@ jobs:
           sudo apt install python3-pip
           python3 -m pip install "pelican[markdown]"
           pelican content
-      - name: Upload the artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: website
-          path: |
-            output
+          cd /home/runner/work/projects/projects/output
+          ls -al
+#      - name: Upload the artifacts
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: website
+#          path: |
+#            output
 
       - name: Install AWS CLI
         run: |
