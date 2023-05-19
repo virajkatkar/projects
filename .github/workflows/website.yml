@@ -56,10 +56,10 @@ jobs:
       contents: read
     steps:
 
-    - name: DownloadUpload the artifacts
-      uses: actions/download-artifact@v3
-      with:
-        name: website
+#    - name: DownloadUpload the artifacts
+#      uses: actions/download-artifact@v3
+#      with:
+#        name: website
         
     - name: Checkout
       uses: actions/checkout@v3
