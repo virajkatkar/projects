@@ -34,7 +34,7 @@ jobs:
           pelican content
           cd /home/runner/work/projects/projects/output
           ls -al
-#          cat hello-wonderful-people.html 
+          cat index.html 
 #      - name: Upload the artifacts
 #        uses: actions/upload-artifact@v3
 #        with:
