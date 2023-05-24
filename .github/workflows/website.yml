@@ -74,7 +74,7 @@ jobs:
         aws-region: us-west-2
     - name: Listing files that will be uploaded
       run: |
-        ls -lah /home/runner/work/projects/projects/upload/
+        ls -lah /home/runner/work/projects/projects/upload
     - name: Copy files to the test website with the AWS CLI
       run: |
         aws s3 sync /home/runner/work/projects/projects/upload/ s3://www.katkarviraj.com
