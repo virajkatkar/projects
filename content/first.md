@@ -1,5 +1,3 @@
-
-
 Title:Greetings people   
 Date: 2023-04-26 16:00
 Category: Introduction
