@@ -69,6 +69,9 @@ jobs:
       with:
         role-to-assume: arn:aws:iam::627517169336:role/Github
         aws-region: us-west-2
+    - name: Listing files that will be uploaded
+      run: |
+        ls -lah /home/runner/work/projects/projects/output/
     - name: Copy files to the test website with the AWS CLI
       run: |
         aws s3 sync /home/runner/work/projects/projects/output/ s3://www.katkarviraj.com
