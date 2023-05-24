@@ -58,13 +58,13 @@ jobs:
 
     - name: Create a directoty to download artefacts
       run: |
-        sudo mkdir -p /home/runner/upload
+        mkdir -p /home/runner/work/projects/projects/upload
 #        chmod -R 755 /upload
     - name: Download the artifacts
       uses: actions/download-artifact@v3
       with:
         name: website
-        path: /home/runner/upload
+        path: /home/runner/work/projects/projects/upload
     - name: Checkout
       uses: actions/checkout@v3
     - name: Configure AWS credentials
@@ -77,7 +77,7 @@ jobs:
         ls -lah /home/runner/upload/
     - name: Copy files to the test website with the AWS CLI
       run: |
-        aws s3 sync /home/runner/upload/ s3://www.katkarviraj.com
+        aws s3 sync /home/runner/work/projects/projects/upload/ s3://www.katkarviraj.com
 #        aws s3 sync /home/runner/work/projects/projects/output/ s3://www.katkarviraj.com
     - name: Invalidate cloudfront
       run: aws cloudfront create-invalidation --distribution-id E3H5FWYDB7EZXV --paths "/*"
