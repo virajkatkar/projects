@@ -59,12 +59,12 @@ jobs:
     - name: Create a directoty to download artefacts
       run: |
         sudo mkdir -p /upload
-        chmod -R 755 /upload
+#        chmod -R 755 /upload
     - name: Download the artifacts
       uses: actions/download-artifact@v3
       with:
         name: website
-        path: /upload
+        path: sudo /upload
     - name: Checkout
       uses: actions/checkout@v3
     - name: Configure AWS credentials
