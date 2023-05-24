@@ -69,10 +69,10 @@ jobs:
         aws-region: us-west-2
     - name: Listing files that will be uploaded
       run: |
-        ls -lah /home/runner/work/projects/projects/
+        ls -lah /home/runner/work/projects/projects/output/
     - name: Copy files to the test website with the AWS CLI
       run: |
-        aws s3 sync /home/runner/work/projects/projects/ s3://www.katkarviraj.com
+        aws s3 sync /home/runner/work/projects/projects/output/ s3://www.katkarviraj.com
     - name: Invalidate cloudfront
       run: aws cloudfront create-invalidation --distribution-id E3H5FWYDB7EZXV --paths "/*"
         
