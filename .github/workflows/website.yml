@@ -56,10 +56,13 @@ jobs:
       contents: read
     steps:
 
-    - name: DownloadUpload the artifacts
+    - name: Create a directoty to download artefacts
+      run: mkdir -p /upload
+    - name: Download the artifacts
       uses: actions/download-artifact@v3
       with:
         name: website
+        path: /upload
     - name: Checkout
       uses: actions/checkout@v3
     - name: Configure AWS credentials
@@ -69,10 +72,11 @@ jobs:
         aws-region: us-west-2
     - name: Listing files that will be uploaded
       run: |
-        ls -lah /home/runner/work/projects/projects/output/
+        ls -lah /upload/
     - name: Copy files to the test website with the AWS CLI
       run: |
-        aws s3 sync /home/runner/work/projects/projects/output/ s3://www.katkarviraj.com
+        aws s3 sync /upload/ s3://www.katkarviraj.com
+#        aws s3 sync /home/runner/work/projects/projects/output/ s3://www.katkarviraj.com
     - name: Invalidate cloudfront
       run: aws cloudfront create-invalidation --distribution-id E3H5FWYDB7EZXV --paths "/*"
         
