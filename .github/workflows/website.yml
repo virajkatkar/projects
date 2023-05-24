@@ -35,12 +35,11 @@ jobs:
           cd /home/runner/work/projects/projects/output
           ls -al
           cat index.html 
-#      - name: Upload the artifacts
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: website
-#          path: |
-#            output
+      - name: Upload the artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: website
+          path: /home/runner/work/projects/projects/output/*
 
       - name: Install AWS CLI
         run: |
@@ -57,10 +56,10 @@ jobs:
       contents: read
     steps:
 
-#    - name: DownloadUpload the artifacts
-#      uses: actions/download-artifact@v3
-#      with:
-#        name: website
+    - name: DownloadUpload the artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: website
         
     - name: Checkout
       uses: actions/checkout@v3
@@ -74,7 +73,7 @@ jobs:
         ls -lah /home/runner/work/projects/projects/output/
     - name: Copy files to the test website with the AWS CLI
       run: |
-        aws s3 sync /home/runner/work/projects/projects/output/ s3://www.katkarviraj.com
+        aws s3 sync website/ s3://www.katkarviraj.com
     - name: Invalidate cloudfront
       run: aws cloudfront create-invalidation --distribution-id E3H5FWYDB7EZXV --paths "/*"
         
