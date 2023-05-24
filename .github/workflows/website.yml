@@ -57,7 +57,7 @@ jobs:
     steps:
 
     - name: Create a directoty to download artefacts
-      run:sudo mkdir -p /upload
+      run: sudo mkdir -p /upload
     - name: Download the artifacts
       uses: actions/download-artifact@v3
       with:
